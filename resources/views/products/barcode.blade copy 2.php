@@ -11,13 +11,13 @@
            /*  background: rgb(199, 199, 199); */
             font-size: 15px;
             font-family: "Helvetica";
-            width: 38mm;
+            width: 80mm;
             height: 28mm;
             margin: 0;
             padding: 0;
         }
         .main{
-            width: 38mm;
+            width: 80mm;
             height: 28mm;
             background: #fff;
             overflow: hidden;
@@ -99,11 +99,11 @@
 </head>
 <body>
     <div class="row main m-0 p-0 mt-1"  id="main">
-        <div style="width:38mm;margin-right:4mm;margin-left:0mm;margin-top:4mm;">
+        <div style="width:38mm;margin-right:4mm;margin-left:0mm;">
             <div>
                 <table width="100%">
                     <tr>
-                        <td  class="">
+                        <td colspan="2" class="">
                             <h5 class="text-center truncate" style="margin:0;">
                                 {{ $product->name }}
                             </h5>
@@ -116,21 +116,21 @@
                              {{ $product->size }}
                             </h5>
                         </td> --}}
-                        {{-- <td>
+                        <td>
                             <h3 style="margin:0;" class="text-center">
                                 Rs. {{ number_format($product->price) }}
                             </h3>
-                        </td> --}}
+                        </td>
                     </tr>
                     <tr>
-                        <td  style="text-align: center">
+                        <td colspan="2" style="text-align: center">
                                 {!! DNS1D::getBarcodeSVG($product->code, 'C128', 1, 50) !!}
                         </td>
                     </tr>
                 </table>
             </div>
         </div>
-       {{--  <div style="width:38mm;">
+        <div style="width:38mm;">
             <div >
                 <table width="100%">
                     <tr>
@@ -146,7 +146,7 @@
                              {{ $product->color }} /
                              {{ $product->size }}
                             </h5>
-                        </td> 
+                        </td> --}}
                         <td>
                             <h3 style="margin:0;" class="text-center">
                                 Rs. {{ number_format($product->price) }}
@@ -160,7 +160,7 @@
                     </tr>
                 </table>
             </div>
-        </div> --}}
+        </div>
     </div>
 </body>
 </html>
