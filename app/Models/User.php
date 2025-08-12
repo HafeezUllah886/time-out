@@ -45,4 +45,20 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function Role_name()
+    {
+        if($this->role == 1)
+        {
+            return "Admin";
+        }
+        elseif($this->role == 2)
+        {
+            return "Store Keeper";
+        }
+        elseif($this->role == 3)
+        {
+            return "Cashier";
+        }
+    }
 }

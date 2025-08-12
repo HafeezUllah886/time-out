@@ -62,40 +62,6 @@
                     </a>
                 </li> <!-- end Dashboard Menu -->
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sales" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="sidebarApps">
-                        <i class="ri-shopping-cart-fill"></i><span data-key="t-apps">Sale</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sales">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a onclick="newWindow('{{ route('sale.create') }}')" class="nav-link"
-                                    data-key="t-chat">Create Sale</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('sale.index') }}" class="nav-link" data-key="t-chat"> Sales History</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link menu-link" href="#quot" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="sidebarApps">
-                        <i class="ri-shopping-cart-fill"></i><span data-key="t-apps">Quotation</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="quot">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a onclick="newWindow('{{ route('quotation.create') }}')" class="nav-link"
-                                    data-key="t-chat">Create Quotation</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('quotation.index') }}" class="nav-link" data-key="t-chat"> Quotation History</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li> --}}
-                <li class="nav-item">
                     <a class="nav-link menu-link" href="#purchase" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarApps">
                         <i class="ri-shopping-cart-line"></i><span data-key="t-apps">Purchase</span>
@@ -132,9 +98,6 @@
                             <li class="nav-item">
                                 <a href="{{ route('product_stock.index', ['zero' => 'below_zero']) }}" class="nav-link" data-key="t-chat">Stock Below Zero</a>
                             </li>
-                            {{-- <li class="nav-item">
-                                <a href="{{ route('stockTransfer.index') }}" class="nav-link" data-key="t-chat">Stock Transfer</a>
-                            </li> --}}
                             <li class="nav-item">
                                 <a href="{{ route('stockAdjustments.index') }}" class="nav-link" data-key="t-chat">Stock Adjustment</a>
                             </li>
@@ -232,10 +195,6 @@
                             <li class="nav-item">
                                 <a href="{{ route('topSellingProductsReport') }}" class="nav-link"
                                     data-key="t-basic-elements">Top Selling Products</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('activityReport') }}" class="nav-link"
-                                    data-key="t-basic-elements">Activity Report</a>
                             </li>
                         </ul>
                     </div>

@@ -69,12 +69,14 @@
 
                     <div class="d-flex align-items-center">
 
+                        @if(auth()->user()->role == 3)
                         <div class="ms-1 header-item d-none d-sm-flex">
                             <a onclick="newWindow('{{ route('pos') }}')"
                                 class="btn btn-info btn-icon btn-topbar material-shadow-none text-white rounded-circle">
                                 POS
                             </a>
                         </div>
+                        @endif
                         <div class="ms-1 header-item d-none d-sm-flex">
                             <button type="button"
                                 class="btn btn-icon btn-topbar material-shadow-none btn-ghost-secondary rounded-circle"
@@ -97,7 +99,7 @@
                                         src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
                                         <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ auth()->user()->name }}</span>
-                                        <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">{{ auth()->user()->role == 1 ? "Admin" : "Operator" }}</span>
+                                        <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">{{ auth()->user()->Role_name() }}</span>
                                     </span>
                                 </span>
                             </button>
@@ -118,7 +120,15 @@
         </header>
 
         <!-- ========== App Menu ========== -->
+        @if(auth()->user()->role == 3)
+        @include('layout.sidebar_cashier')
+        @else
+        @if(auth()->user()->role == 2)
+        @include('layout.sidebar_store_keeper')
+        @else
         @include('layout.sidebar')
+        @endif
+        @endif
         <!-- Left Sidebar End -->
         <!-- Vertical Overlay-->
         <div class="vertical-overlay"></div>
