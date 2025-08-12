@@ -11,14 +11,14 @@
            /*  background: rgb(199, 199, 199); */
             font-size: 15px;
             font-family: "Helvetica";
-            width: 38mm;
-            height: 28mm;
+            width: 50mm;
+            height: 38mm;
             margin: 0;
             padding: 0;
         }
         .main{
-            width: 38mm;
-            height: 28mm;
+            width: 50mm;
+            height: 38mm;
             background: #fff;
             overflow: hidden;
             margin: 0px auto;
@@ -71,7 +71,7 @@
             text-transform: uppercase;
         }
         .truncate {
-            width: 38mm;
+            width: 50mm;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -99,7 +99,7 @@
 </head>
 <body>
     <div class="row main m-0 p-0 mt-1"  id="main">
-        <div style="width:38mm;margin-right:4mm;margin-left:0mm;margin-top:4mm;">
+        <div style="width:50mm;margin-right:4mm;margin-left:0mm;margin-top:4mm;">
             <div>
                 <table width="100%">
                     <tr>
