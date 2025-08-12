@@ -11,13 +11,13 @@
            /*  background: rgb(199, 199, 199); */
             font-size: 15px;
             font-family: "Helvetica";
-            width: 50mm;
+            width: 45mm;
             height: 35mm;
             margin: 0;
             padding: 0;
         }
         .main{
-            width: 50mm;
+            width: 45mm;
             height: 35mm;
             background: #fff;
             overflow: hidden;
@@ -71,7 +71,7 @@
             text-transform: uppercase;
         }
         .truncate {
-            width: 50mm;
+            width: 45mm;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -99,7 +99,7 @@
 </head>
 <body>
     <div class="row main m-0 p-0 mt-1"  id="main">
-        <div style="width:50mm;margin-right:4mm;margin-left:0mm;margin-top:4mm; margin-bottom:0mm padding-bottom:0mm">
+        <div style="width:45mm;margin-right:4mm;margin-left:0mm;margin-top:4mm; margin-bottom:0mm padding-bottom:0mm">
             <div>
                 <table width="100%">
                     <tr>
@@ -124,7 +124,7 @@
                     </tr>
                     <tr>
                         <td  style="text-align: center">
-                                {!! DNS1D::getBarcodeSVG($product->code, 'C128', 1.5, 80) !!}
+                                {!! DNS1D::getBarcodeSVG($product->code, 'C128', 1.2, 70) !!}
                         </td>
                     </tr>
                 </table>
