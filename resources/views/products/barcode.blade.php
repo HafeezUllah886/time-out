@@ -99,14 +99,14 @@
 </head>
 <body>
     <div class="row main m-0 p-0 mt-1"  id="main">
-        <div style="width:50mm;margin-right:4mm;margin-left:0mm;margin-top:4mm;">
+        <div style="width:50mm;margin-right:4mm;margin-left:0mm;margin-top:4mm; margin-bottom:0mm padding-bottom:0mm">
             <div>
                 <table width="100%">
                     <tr>
                         <td  class="">
-                            <h5 class="text-center truncate" style="margin:0;">
+                            <h4 class="text-center truncate" style="margin:0;">
                                 {{ $product->name }}
-                            </h5>
+                            </h4>
                         </td>
                     </tr>
                     <tr>
@@ -124,7 +124,7 @@
                     </tr>
                     <tr>
                         <td  style="text-align: center">
-                                {!! DNS1D::getBarcodeSVG($product->code, 'C128', 1, 50) !!}
+                                {!! DNS1D::getBarcodeSVG($product->code, 'C128', 1.2, 60) !!}
                         </td>
                     </tr>
                 </table>
