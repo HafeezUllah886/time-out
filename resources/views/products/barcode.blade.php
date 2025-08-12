@@ -12,13 +12,13 @@
             font-size: 15px;
             font-family: "Helvetica";
             width: 50mm;
-            height: 38mm;
+            height: 35mm;
             margin: 0;
             padding: 0;
         }
         .main{
             width: 50mm;
-            height: 38mm;
+            height: 35mm;
             background: #fff;
             overflow: hidden;
             margin: 0px auto;
@@ -124,7 +124,7 @@
                     </tr>
                     <tr>
                         <td  style="text-align: center">
-                                {!! DNS1D::getBarcodeSVG($product->code, 'C128', 1.2, 60) !!}
+                                {!! DNS1D::getBarcodeSVG($product->code, 'C128', 1.5, 80) !!}
                         </td>
                     </tr>
                 </table>
