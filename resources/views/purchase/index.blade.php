@@ -21,6 +21,7 @@
                     <table class="table" id="buttons-datatables">
                         <thead>
                             <th>#</th>
+                            <th>ID</th>
                             <th>Inv #</th>
                             <th>Vendor</th>
                             <th>Date</th>
@@ -36,6 +37,7 @@
                                 @endphp
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
+                                    <td>{{ $purchase->id}}</td>
                                     <td>{{ $purchase->inv ?? "-" }}</td>
                                     <td>{{ $purchase->vendor->title }}</td>
                                     <td>{{ date('d M Y', strtotime($purchase->date)) }}</td>
