@@ -84,6 +84,16 @@
                                             <th class="text-end p-1 m-0">{{ number_format($products->sum('purchases.qty'),2) }}</th>
                                             <th class="text-end p-1 m-0">{{ number_format($products->sum('purchases.total'),2) }}</th>
                                         </tr>
+                                        <tr class="table-active">
+                                            <th colspan="3" class="text-end p-1 m-0">Discount</th>
+                                            <th></th>
+                                            <th class="text-end p-1 m-0">{{ number_format($purchase_discount,2) }}</th>
+                                        </tr>
+                                        <tr class="table-active">
+                                            <th colspan="3" class="text-end p-1 m-0">DC</th>
+                                            <th></th>
+                                            <th class="text-end p-1 m-0">{{ number_format($purchase_dc,2) }}</th>
+                                        </tr>
                                         </tbody>
                                     </table><!--end table-->
                                 </div>
@@ -132,6 +142,45 @@
                                             <th class="text-end p-1 m-0">{{ number_format($products->sum('sales.qty'),2) }}</th>
                                             <th class="text-end p-1 m-0">{{ number_format($products->sum('sales.total'),2) }}</th>
                                         </tr>
+                                        <tr class="table-active">
+                                            <th colspan="3" class="text-end p-1 m-0">Discount</th>
+                                            <th></th>
+                                            <th class="text-end p-1 m-0">{{ number_format($sale_discount,2) }}</th>
+                                        </tr>
+                                        <tr class="table-active">
+                                            <th colspan="3" class="text-end p-1 m-0">DC</th>
+                                            <th></th>
+                                            <th class="text-end p-1 m-0">{{ number_format($sale_dc,2) }}</th>
+                                        </tr>
+                                        </tbody>
+                                    </table><!--end table-->
+                                </div>
+
+                            </div>
+                            <!--end card-body-->
+                        </div><!--end col-->
+
+
+                        <div class="col-lg-12">
+                            <div class="card-body p-4 pt-0">
+                                <div class="card-header">
+                                    <h5>Profit</h5>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-borderless table-nowrap align-middle mb-0">
+                                        <thead>
+                                            <tr class="table-active">
+                                                <th scope="col" class="p-1 m-0 text-end">Profit</th>
+                                                <th scope="col" class="p-1 m-0 text-end">Expense</th>
+                                                <th scope="col" class="p-1 m-0 text-end">Net Profit</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-end p-1 m-0">{{ number_format($profit,2) }}</td>
+                                                <td class="text-end p-1 m-0">{{ number_format($expense,2) }}</td>
+                                                <td class="text-end p-1 m-0">{{ number_format($net_profit,2) }}</td>
+                                            </tr>
                                         </tbody>
                                     </table><!--end table-->
                                 </div>

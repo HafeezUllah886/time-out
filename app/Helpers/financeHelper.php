@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\products;
 use App\Models\ref;
+use App\Models\sale_details;
 use App\Models\transactions;
 
 function createTransaction($accountID, $date, $cr, $db, $notes, $ref){
@@ -47,4 +49,21 @@ function spotBalance($id, $ref)
     $cr = transactions::where('accountID', $id)->where('refID', '<=', $ref)->sum('cr');
     $db = transactions::where('accountID', $id)->where('refID', '<=', $ref)->sum('db');
     return $balance = $cr - $db;
+}
+
+
+function profit($from, $to){
+    $products = products::all();
+   $total_profit = 0;
+    foreach($products as $product)
+    {
+        $purchaseRate = avgPurchasePrice($from, $to, $product->id);
+        $saleRate = avgSalePrice($from, $to, $product->id);
+        $sold = sale_details::where('productID', $product->id)->whereBetween('date', [$from, $to])->sum('qty');
+        $ppu = $saleRate - $purchaseRate;
+        $profit = $ppu * $sold;
+       $total_profit += $profit;
+    }
+
+    return $total_profit;
 }

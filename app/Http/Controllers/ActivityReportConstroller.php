@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\expenses;
 use App\Models\products;
+use App\Models\purchase;
 use App\Models\purchase_details;
 use App\Models\sale_details;
+use App\Models\sales;
 use Illuminate\Http\Request;
 
 class ActivityReportConstroller extends Controller
@@ -17,7 +20,6 @@ class ActivityReportConstroller extends Controller
 
     public function details($from, $to)
     {
-
         $products = products::all();
         foreach($products as $product){
             $purchases = purchase_details::where('productID', $product->id)->whereBetween('date', [$from, $to])->get();
@@ -38,8 +40,21 @@ class ActivityReportConstroller extends Controller
             ];
            }
         }
+        $purchase = purchase::whereBetween('date', [$from, $to]);
+        $sale = sales::whereBetween('date', [$from, $to]);
 
+        $purchase_discount = $purchase->sum('discount');
+        $purchase_dc = $purchase->sum('dc');
+
+        $sale_discount = $sale->sum('discount');
+        $sale_dc = $sale->sum('dc');
+
+        $profit = profit($from, $to);
+
+        $expense = expenses::whereBetween('date', [$from, $to])->sum('amount');
+
+        $net_profit = $profit - $expense;
        
-        return view('reports.activity.details', compact('products', 'from', 'to'));
+        return view('reports.activity.details', compact('products', 'from', 'to', 'purchase_discount', 'purchase_dc', 'sale_discount', 'sale_dc', 'profit', 'expense', 'net_profit'));
     }
 }
