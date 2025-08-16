@@ -149,7 +149,7 @@
                     <td colspan="3" class="text-right" style="font-size: 20px"><strong>{{ number_format($invoice->received, 0) }}</strong></td>
                    </tr>
                    <tr>
-                    <td colspan="3" class="text-right">Change:</td>
+                    <td colspan="3" class="text-right">Cash Back:</td>
                     <td colspan="3" class="text-right" style="font-size: 20px"><strong>{{ number_format($invoice->change, 0) }}</strong></td>
                    </tr>
                 </tbody>

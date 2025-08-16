@@ -78,6 +78,7 @@ class SalesController extends Controller
                   'dc'              => $request->dc,
                   'customerName'    => $request->customerName,
                   'refID'           => $ref,
+                  'userID'          => auth()->user()->id,
                 ]
             );
 
@@ -105,6 +106,7 @@ class SalesController extends Controller
                         'batch'         => $stock->batch,
                         'expiry'        => $stock->expiry,
                         'refID'         => $ref,
+                        'userID'        => auth()->user()->id,
                     ]
                 );
                 createStock($id,0, $qty, $request->date, "Sold in Inv # $sale->id", $ref, /* $request->warehouse[$key],  */$stock->batch, $stock->expiry);
