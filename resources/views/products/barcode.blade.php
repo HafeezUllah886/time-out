@@ -5,12 +5,12 @@
     <title>POS Barcode</title>
     <style>
         @page {
-            size: 38mm 25mm;
+            size: 38mm 20mm;
             margin: 0;
         }
         body {
             width: 38mm;
-            height: 25mm;
+            height: 20mm;
             margin: 0;
             padding: 0;
             font-size: 15px;
@@ -19,7 +19,7 @@
         }
         .main {
             width: 38mm;
-            height: 25mm;
+            height: 20mm;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -29,8 +29,9 @@
         }
         .label {
             width: 100%;
-            height: 100%;
+            height: 90%;
             display: flex;
+            margin-top: 40px;
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -55,7 +56,7 @@
         @media print {
             html, body {
                 width: 38mm;
-                height: 25mm;
+                height: 20mm;
             }
             body * {
                 visibility: visible;
@@ -73,7 +74,7 @@
                 {{ $product->name }}
             </h5>
             <h5>
-                {!! DNS1D::getBarcodeSVG($product->code, 'C128', 1.2, 70) !!}
+                {!! DNS1D::getBarcodeSVG($product->code, 'C128', 1, 40) !!}
             </h5>
         </div>
     </div>
