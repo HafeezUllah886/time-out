@@ -1,178 +1,224 @@
 @extends('layout.app')
 @section('content')
-@if(auth()->user()->role == 1)
-<div class="row">
-    <div class="col-xl-12">
-        <div class="card crm-widget">
-            <div class="card-body p-0">
-                <div class="row row-cols-xxl-5 row-cols-md-3 row-cols-1 g-0">
-                    <div class="col">
-                        @php
-                            $customersBalance = customerBalance();
-                            $vendorsBalance = vendorBalance();
-                            $myBalance = myBalance();
-                        @endphp
-                        <div class="py-4 px-3">
-                            <h5 class="text-muted text-uppercase fs-13">Purchases</h5>
-                            <div class="d-flex align-items-center">
-                                {{-- <div class="flex-shrink-0">
+    @if (auth()->user()->role == 1)
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card crm-widget">
+                    <div class="card-body p-0">
+                        <div class="row row-cols-xxl-5 row-cols-md-3 row-cols-1 g-0">
+                            <div class="col">
+                                @php
+                                    $customersBalance = customerBalance();
+                                    $vendorsBalance = vendorBalance();
+                                    $myBalance = myBalance();
+                                @endphp
+                                <div class="py-4 px-3">
+                                    <h5 class="text-muted text-uppercase fs-13">Purchases</h5>
+                                    <div class="d-flex align-items-center">
+                                        {{-- <div class="flex-shrink-0">
                                     <i class="ri-space-ship-line display-6 text-muted cfs-22"></i>
                                 </div> --}}
-                                <div class="flex-grow-1 ms-3">
-                                    <h2 class="mb-0 cfs-22"><span class="counter-value" data-target="{{totalPurchases()}}">0</span></h2>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h2 class="mb-0 cfs-22"><span class="counter-value"
+                                                    data-target="{{ totalPurchases() }}">0</span></h2>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div><!-- end col -->
-                    <div class="col">
-                        <div class="mt-3 mt-md-0 py-4 px-3">
-                            <h5 class="text-muted text-uppercase fs-13">Sales</h5>
-                            <div class="d-flex align-items-center">
-                               {{--  <div class="flex-shrink-0">
+                            </div><!-- end col -->
+                            <div class="col">
+                                <div class="mt-3 mt-md-0 py-4 px-3">
+                                    <h5 class="text-muted text-uppercase fs-13">Sales</h5>
+                                    <div class="d-flex align-items-center">
+                                        {{--  <div class="flex-shrink-0">
                                     <i class="ri-exchange-dollar-line display-6 text-muted cfs-22"></i>
                                 </div> --}}
-                                <div class="flex-grow-1 ms-3">
-                                    <h2 class="mb-0 cfs-22"><span class="counter-value" data-target="{{totalSales()}}">0</span></h2>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h2 class="mb-0 cfs-22"><span class="counter-value"
+                                                    data-target="{{ totalSales() }}">0</span></h2>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div><!-- end col -->
-                    <div class="col">
-                        <div class="mt-3 mt-md-0 py-4 px-3">
-                            <h5 class="text-muted text-uppercase fs-13">Customers Balance</h5>
-                            <div class="d-flex align-items-center">
-                                {{-- <div class="flex-shrink-0">
+                            </div><!-- end col -->
+                            <div class="col">
+                                <div class="mt-3 mt-md-0 py-4 px-3">
+                                    <h5 class="text-muted text-uppercase fs-13">Customers Balance</h5>
+                                    <div class="d-flex align-items-center">
+                                        {{-- <div class="flex-shrink-0">
                                     <i class="ri-pulse-line display-6 text-muted cfs-22"></i>
                                 </div> --}}
-                                <div class="flex-grow-1 ms-3">
-                                    <h2 class="mb-0 cfs-22 {{$customersBalance < 0 ? "text-danger" : "text-success"}}"><span class="counter-value" data-target="{{customerBalance()}}">0</span></h2>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h2
+                                                class="mb-0 cfs-22 {{ $customersBalance < 0 ? 'text-danger' : 'text-success' }}">
+                                                <span class="counter-value" data-target="{{ customerBalance() }}">0</span>
+                                            </h2>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div><!-- end col -->
-                    <div class="col">
-                        <div class="mt-3 mt-lg-0 py-4 px-3">
-                            <h5 class="text-muted text-uppercase fs-13">Vendors Balance</h5>
-                            <div class="d-flex align-items-center">
-                                {{-- <div class="flex-shrink-0">
+                            </div><!-- end col -->
+                            <div class="col">
+                                <div class="mt-3 mt-lg-0 py-4 px-3">
+                                    <h5 class="text-muted text-uppercase fs-13">Vendors Balance</h5>
+                                    <div class="d-flex align-items-center">
+                                        {{-- <div class="flex-shrink-0">
                                     <i class="ri-trophy-line display-6 text-muted cfs-22"></i>
                                 </div> --}}
-                                <div class="flex-grow-1 ms-3">
-                                    <h2 class="mb-0 cfs-22 {{$vendorsBalance < 0 ? "text-danger" : "text-success"}}""><span class="counter-value" data-target="{{vendorBalance()}}">0</span></h2>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h2
+                                                class="mb-0 cfs-22 {{ $vendorsBalance < 0 ? 'text-danger' : 'text-success' }}"">
+                                                <span class="counter-value" data-target="{{ vendorBalance() }}">0</span>
+                                            </h2>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div><!-- end col -->
-                    <div class="col">
-                        <div class="mt-3 mt-lg-0 py-4 px-3">
-                            <h5 class="text-muted text-uppercase fs-13">My Balance</h5>
-                            <div class="d-flex align-items-center">
-                                {{-- <div class="flex-shrink-0">
+                            </div><!-- end col -->
+                            <div class="col">
+                                <div class="mt-3 mt-lg-0 py-4 px-3">
+                                    <h5 class="text-muted text-uppercase fs-13">My Balance</h5>
+                                    <div class="d-flex align-items-center">
+                                        {{-- <div class="flex-shrink-0">
                                     <i class="ri-service-line display-6 text-muted cfs-22"></i>
                                 </div> --}}
-                                <div class="flex-grow-1 ms-3">
-                                    <h2 class="mb-0 cfs-22 {{$myBalance < 0 ? "text-danger" : "text-success"}}""><span class="counter-value" data-target="{{myBalance()}}">0</span></h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- end col -->
-                </div><!-- end row -->
-            </div><!-- end card body -->
-        </div><!-- end card -->
-    </div><!-- end col -->
-</div><!-- end row -->
-@endif
-<div class="row">
-    <div class="col-xl-6">
-        <div class="card">
-            <div class="card-header align-items-center d-flex">
-                <h4 class="card-title mb-0 flex-grow-1">Best Selling Products</h4>
-                <div class="flex-shrink-0">
-                </div>
-            </div><!-- end card header -->
-
-            <div class="card-body">
-                <div class="table-responsive table-card">
-                    <table class="table table-hover table-centered align-middle table-nowrap mb-0">
-                        <tbody>
-                            @foreach ($topProductsArray as $product)
-                            <tr>
-                                <td>
-                                    <div>
-                                        <h5 class="fs-14 my-1">{{$product['name']}}</h5>
-                                        <span class="text-muted">Product</span>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h2 class="mb-0 cfs-22 {{ $myBalance < 0 ? 'text-danger' : 'text-success' }}"">
+                                                <span class="counter-value" data-target="{{ myBalance() }}">0</span></h2>
+                                        </div>
                                     </div>
-                                </td>
-                                <td>
-                                    <h5 class="fs-14 my-1 fw-normal">{{number_format($product['price'])}}</h5>
-                                    <span class="text-muted">Avg Price</span>
-                                </td>
-                                <td>
-                                    <h5 class="fs-14 my-1 fw-normal">{{number_format($product['sold'])}}</h5>
-                                    <span class="text-muted">Sold</span>
-                                </td>
-                                <td>
-                                    <h5 class="fs-14 my-1 fw-normal">{{number_format($product['stock'])}}</h5>
-                                    <span class="text-muted">Stock</span>
-                                </td>
-                                <td>
-                                    <h5 class="fs-14 my-1 fw-normal">{{number_format($product['amount'])}}</h5>
-                                    <span class="text-muted">Amount</span>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                </div>
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                    </div><!-- end card body -->
+                </div><!-- end card -->
+            </div><!-- end col -->
+        </div><!-- end row -->
+    @endif
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header align-items-center ">
+                    <h4 class="card-title mb-0">Low Stock</h4>
+                    <div class="flex-shrink-0">
+                    </div>
+                </div><!-- end card header -->
+    
+                <div class="card-body">
+                    <div class="table-responsive table-card">
+                        <table class="table table-hover table-centered align-middle table-nowrap mb-0">
+                            <tbody>
+                                @foreach ($products as $product)
+                                @if($product->stock < $product->stock_alert)
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <h5 class="fs-14 my-1">{{$product->name}}</h5>
+                                            <span class="text-muted">Product</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h5 class="fs-14 my-1 fw-normal">{{$product->stock_alert}}</h5>
+                                        <span class="text-muted">Stock Alert</span>
+                                    </td>
+                                    <td>
+                                        <h5 class="fs-14 my-1 fw-normal">{{number_format($product->stock)}}</h5>
+                                        <span class="text-muted">Stock</span>
+                                    </td>
+                                </tr>
+                                @endIF
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+    
                 </div>
-
             </div>
         </div>
-    </div>
 
-    <div class="col-xl-6">
-        <div class="card card-height-100">
-            <div class="card-header align-items-center d-flex">
-                <h4 class="card-title mb-0 flex-grow-1">Top Customers</h4>
-            </div><!-- end card header -->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header align-items-center d-flex">
+                    <h4 class="card-title mb-0 flex-grow-1">Best Selling Products</h4>
+                    <div class="flex-shrink-0">
+                    </div>
+                </div><!-- end card header -->
 
-            <div class="card-body">
-                <div class="table-responsive table-card">
-                    <table class="table table-centered table-hover align-middle table-nowrap mb-0">
-                        <tbody>
-                           @foreach ($topCustomersArray as $customer)
-                           <tr>
-                            <td>
-                                <div class="">
-                                        <h5 class="fs-14 my-1 fw-medium">{{$customer['name']}}</h5>
-                                        <span class="text-muted">Title</span>
-                                </div>
-                            </td>
-                            <td>
-                                <h5 class="fs-14 my-1 fw-normal">{{number_format($customer['purchases'])}}</h5>
-                                <span class="text-muted">Total Purchase</span>
-                            </td>
-                            <td>
-                                <h5 class="fs-14 my-1 fw-normal">{{number_format($customer['balance'])}}</h5>
-                                <span class="text-muted">Current Balance</span>
-                            </td>
-                        </tr><!-- end -->
-                           @endforeach
-                        </tbody>
-                    </table><!-- end table -->
+                <div class="card-body">
+                    <div class="table-responsive table-card">
+                        <table class="table table-hover table-centered align-middle table-nowrap mb-0">
+                            <tbody>
+                                @foreach ($topProductsArray as $product)
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <h5 class="fs-14 my-1">{{ $product['name'] }}</h5>
+                                                <span class="text-muted">Product</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h5 class="fs-14 my-1 fw-normal">{{ number_format($product['price']) }}</h5>
+                                            <span class="text-muted">Avg Price</span>
+                                        </td>
+                                        <td>
+                                            <h5 class="fs-14 my-1 fw-normal">{{ number_format($product['sold']) }}</h5>
+                                            <span class="text-muted">Sold</span>
+                                        </td>
+                                        <td>
+                                            <h5 class="fs-14 my-1 fw-normal">{{ number_format($product['stock']) }}</h5>
+                                            <span class="text-muted">Stock</span>
+                                        </td>
+                                        <td>
+                                            <h5 class="fs-14 my-1 fw-normal">{{ number_format($product['amount']) }}</h5>
+                                            <span class="text-muted">Amount</span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
+            </div>
+           {{--  <div class="card card-height-100">
+                <div class="card-header align-items-center d-flex">
+                    <h4 class="card-title mb-0 flex-grow-1">Top Customers</h4>
+                </div><!-- end card header -->
 
-            </div> <!-- .card-body-->
-        </div> <!-- .card-->
-    </div> <!-- .col-->
-</div> <!-- end row-->
+                <div class="card-body">
+                    <div class="table-responsive table-card">
+                        <table class="table table-centered table-hover align-middle table-nowrap mb-0">
+                            <tbody>
+                                @foreach ($topCustomersArray as $customer)
+                                    <tr>
+                                        <td>
+                                            <div class="">
+                                                <h5 class="fs-14 my-1 fw-medium">{{ $customer['name'] }}</h5>
+                                                <span class="text-muted">Title</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h5 class="fs-14 my-1 fw-normal">{{ number_format($customer['purchases']) }}
+                                            </h5>
+                                            <span class="text-muted">Total Purchase</span>
+                                        </td>
+                                        <td>
+                                            <h5 class="fs-14 my-1 fw-normal">{{ number_format($customer['balance']) }}</h5>
+                                            <span class="text-muted">Current Balance</span>
+                                        </td>
+                                    </tr><!-- end -->
+                                @endforeach
+                            </tbody>
+                        </table><!-- end table -->
+                    </div>
+
+                </div> <!-- .card-body-->
+            </div> <!-- .card--> --}}
+        </div> <!-- .col-->
+    </div> <!-- end row-->
 @endsection
 @section('page-css')
-
 @endsection
 @section('page-js')
-       <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
-       <script src="{{asset('assets/js/pages/dashboard-ecommerce.init.js')}}"></script>
-      {{--  <script>
+    <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/dashboard-ecommerce.init.js') }}"></script>
+    {{--  <script>
 
 
         function updateCustomerImpressionChart(ordersData, earningsData, refundsData, months) {
@@ -235,4 +281,3 @@
 
        </script> --}}
 @endsection
-

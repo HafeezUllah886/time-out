@@ -24,4 +24,7 @@ class products extends Model
     {
         return $this->belongsTo(categories::class, 'catID');
     }
+
+
+
 }

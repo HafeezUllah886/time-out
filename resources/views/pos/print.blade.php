@@ -72,8 +72,8 @@
         <div style="text-align: center;">
             {{-- <img style="width:100%;margin:0 auto;height:100px;" src="{{ asset('assets/images/header.jpg') }}" alt=""> --}}
             <h2 class="text-center" style="margin: 0">TIME-OUT MART</h2>
-            <h3 class="text-center" style="margin: 0">Hana Bypass Nawan Killi Quetta</h3>
-            <h5 class="text-center" style="margin: 0">0335-2665222</h5>
+            <h3 class="text-center" style="margin: 0">Attock Petrol Pump, Airport Road, Quetta</h3>
+{{--             <h5 class="text-center" style="margin: 0">0335-2665222</h5> --}}
          </div>
         <div class="header">
            {{--  <p class="text-center"><strong>081-2502481</strong></p>

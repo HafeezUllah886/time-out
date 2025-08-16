@@ -14,7 +14,7 @@
                                         <h1>{{projectNameAuth()}}</h1>
                                     </div>
                                     <div class="flex-shrink-0 mt-sm-0 mt-3">
-                                        <h3>Profit / Loss Report</h3>
+                                        <h3>Activity Report</h3>
                                     </div>
                                 </div>
                             </div>
@@ -44,65 +44,95 @@
                             </div>
                             <!--end card-body-->
                         </div><!--end col-->
+                        
                         <div class="col-lg-12">
                             <div class="card-body p-4">
+                                <div class="card-header">
+                                    <h5>Purchases</h5>
+                                </div>
                                 <div class="table-responsive">
-                                    <table class="table table-borderless text-center table-nowrap align-middle mb-0">
+                                    <table class="table table-borderless table-nowrap align-middle mb-0">
                                         <thead>
                                             <tr class="table-active">
-                                                <th scope="col" style="width: 50px;">#</th>
-                                                <th scope="col">Product</th>
-                                                <th scope="col" class="text-end">Avg Purchase Rate</th>
-                                                <th scope="col" class="text-end">Avg Sale Price</th>
-                                                <th scope="col" class="text-end">Sold Qty</th>
-                                                <th scope="col" class="text-end">Profit / Unit</th>
-                                                <th scope="col" class="text-end">Profit</th>
-                                                <th scope="col" class="text-end">Stock</th>
-                                                <th scope="col" class="text-end">Stock Value</th>
+                                                <th scope="col" class="p-1 m-0" style="width: 50px; ">#</th>
+                                                <th scope="col" class="p-1 m-0 text-start">Product</th>
+                                                <th scope="col" class="p-1 m-0 text-end">Price</th>
+                                                <th scope="col" class="p-1 m-0 text-end">Qty</th>
+                                                <th scope="col" class="p-1 m-0 text-end">Amount</th>
                                             </tr>
                                         </thead>
-                                        <tbody >
+                                        <tbody>
                                             @php
-                                                $total = 0;
-                                                $totalValue = 0;
+                                                $ser = 0;
                                             @endphp
-                                        @foreach ($data as $key => $item)
-                                        @php
-                                            $total += $item['profit'];
-                                            $totalValue += $item['stockValue'];
-                                        @endphp
-                                        @if ($item['sold'] == 0)
-                                            @continue
-                                        @endif
+                                           @foreach ($products as $key => $product)
+                                           @if($product->purchases)
+                                            @php
+                                                $ser++;
+                                            @endphp
                                             <tr>
-                                                <td>{{ $key+1 }}</td>
-                                                <td class="text-start">{{ $item['name'] }}</td>
-                                                <td class="text-end">{{ number_format($item['purchaseRate'],2) }}</td>
-                                                <td class="text-end">{{ number_format($item['saleRate'],2) }}</td>
-                                                <td class="text-end">{{ number_format($item['sold'],2) }}</td>
-                                                <td class="text-end">{{ number_format($item['ppu'],2) }}</td>
-                                                <td class="text-end">{{ number_format($item['profit'],2) }}</td>
-                                                <td class="text-end">{{ number_format($item['stock'],2) }}</td>
-                                                <td class="text-end">{{ number_format($item['stockValue'],2) }}</td>
+                                                <td>{{ $ser }}</td>
+                                                <td class="text-start p-1 m-0">{{ $product->name }}</td>
+                                                <td class="text-end p-1 m-0">{{ number_format($product->purchases['price'],2) }}</td>
+                                                <td class="text-end p-1 m-0">{{ number_format($product->purchases['qty'],2) }}</td>
+                                                <td class="text-end p-1 m-0">{{ number_format($product->purchases['total'],2) }}</td>
                                             </tr>
+                                            @endif
                                         @endforeach
+                                        <tr class="table-active">
+                                            <th colspan="3" class="text-end p-1 m-0">Total</th>
+                                            <th class="text-end p-1 m-0">{{ number_format($products->sum('purchases.qty'),2) }}</th>
+                                            <th class="text-end p-1 m-0">{{ number_format($products->sum('purchases.total'),2) }}</th>
+                                        </tr>
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th colspan="6" class="text-end">Total</th>
-                                                <th class="text-end">{{number_format($total, 2)}}</th>
-                                                <th></th>
-                                                <th class="text-end">{{number_format($totalValue, 2)}}</th>
+                                    </table><!--end table-->
+                                </div>
+
+                            </div>
+                            <!--end card-body-->
+                        </div><!--end col-->
+
+                        <div class="col-lg-12">
+                            <div class="card-body p-4 pt-0">
+                                <div class="card-header">
+                                    <h5>Sales</h5>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-borderless table-nowrap align-middle mb-0">
+                                        <thead>
+                                            <tr class="table-active">
+                                                <th scope="col" class="p-1 m-0" style="width: 50px;">#</th>
+                                                <th scope="col" class="p-1 m-0 text-start">Product</th>
+                                                <th scope="col" class="p-1 m-0 text-end">Price</th>
+                                                <th scope="col" class="p-1 m-0 text-end">Qty</th>
+                                                <th scope="col" class="p-1 m-0 text-end">Amount</th>
                                             </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $ser = 0;
+                                            @endphp
+                                           @foreach ($products as $key => $product)
+                                           @if($product->sales)
+                                            @php
+                                                $ser++;
+                                            @endphp
                                             <tr>
-                                                <th colspan="6" class="text-end">Expense</th>
-                                                <th class="text-end">{{number_format($expenses, 2)}}</th>
+                                                <td class="p-1 m-0">{{ $ser }}</td>
+                                                <td class="text-start p-1 m-0">{{ $product->name }}</td>
+                                                <td class="text-end p-1 m-0">{{ number_format($product->sales['price'],2) }}</td>
+                                                <td class="text-end p-1 m-0">{{ number_format($product->sales['qty'],2) }}</td>
+                                                <td class="text-end p-1 m-0">{{ number_format($product->sales['total'],2) }}</td>
                                             </tr>
-                                            <tr>
-                                                <th colspan="6" class="text-end">Net Profit</th>
-                                                <th class="text-end">{{number_format($total - $expenses, 2)}}</th>
-                                            </tr>
-                                        </tfoot>
+                                            @endif
+                                        @endforeach
+                                        <tr class="table-active">
+                                            <th colspan="3" class="text-end p-1 m-0">Total</th>
+                                           
+                                            <th class="text-end p-1 m-0">{{ number_format($products->sum('sales.qty'),2) }}</th>
+                                            <th class="text-end p-1 m-0">{{ number_format($products->sum('sales.total'),2) }}</th>
+                                        </tr>
+                                        </tbody>
                                     </table><!--end table-->
                                 </div>
 

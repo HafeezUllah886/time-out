@@ -32,7 +32,7 @@
         $("#viewBtn").on("click", function (){
             var from = $("#from").val();
             var to = $("#to").val();
-            var url = "{{ route('reportActivityData', ['from' => ':from', 'to' => ':to']) }}"
+            var url = "{{ route('activityReportData', ['from' => ':from', 'to' => ':to']) }}"
         .replace(':from', from)
         .replace(':to', to);
             window.open(url, "_blank", "width=1000,height=800");

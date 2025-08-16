@@ -112,7 +112,16 @@ class dashboardController extends Controller
 
             }
 
+
+            $products = products::all();
+
+            foreach($products as $product)
+            {
+                $stock = getStock($product->id);
+                $product->stock = $stock;
+            }
+
        /*  return view('dashboard.index', compact('sales', 'monthNames', 'expenses', 'profits', 'last_sale', 'last_expense', 'last_profit', 'topProductsArray', 'topCustomersArray')); */
-        return view('dashboard.index', compact('topProductsArray', 'topCustomersArray'));
+        return view('dashboard.index', compact('topProductsArray', 'topCustomersArray', 'products'));
     }
 }

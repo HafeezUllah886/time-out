@@ -27,7 +27,7 @@
                             <th>Category</th>
                             <th>Purchase Price</th>
                             <th>Sale Price</th>
-                            <th>Default</th>
+                            <th>Stock Alert</th>
                             <th>Action</th>
                         </thead>
                         <tbody>
@@ -39,7 +39,7 @@
                                     <td>{{ $item->category->name }}</td>
                                     <td>{{ number_format($item->pprice, 2) }}</td>
                                     <td>{{ number_format($item->price, 2) }}</td>
-                                    <td>{{ $item->isDefault }}</td>
+                                    <td>{{ $item->stock_alert }}</td>
                                     <td>
                                         <button type="button" class="btn btn-info " data-bs-toggle="modal"
                                             data-bs-target="#edit_{{ $item->id }}">Edit</button>
@@ -59,12 +59,7 @@
                                                 @csrf
                                                 @method('patch')
                                                 <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label for="code">Code</label>
-                                                        <input type="text" name="code" required
-                                                            value="{{ $item->code }}" id="code"
-                                                            class="form-control">
-                                                    </div>
+                                                   
                                                     <div class="form-group mt-2">
                                                         <label for="name">Name</label>
                                                         <input type="text" name="name" required
@@ -79,14 +74,14 @@
                                                         @endforeach
                                                        </select>
                                                     </div>
-                                                    <div class="form-group mt-2">
+                                                   {{--  <div class="form-group mt-2">
                                                         <label for="isDefault">Default</label>
                                                        <select name="isDefault" id="isDefault" class="form-control">
                                                             <option value="No" @selected($item->isDefault == "No")>No</option>
                                                             <option value="Yes" @selected($item->isDefault == "Yes")>Yes</option>
 
                                                        </select>
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="form-group mt-2">
                                                         <label for="pprice">Purchase Price</label>
                                                         <input type="number" step="any" name="pprice" required
@@ -99,12 +94,18 @@
                                                             value="{{ $item->price }}" min="0" id="price"
                                                             class="form-control">
                                                     </div>
-                                                   {{--  <div class="form-group mt-2">
-                                                        <label for="discount">Discount</label>
-                                                        <input type="number" step="any" name="discount" required
-                                                            value="{{ $item->discount }}" min="0"
-                                                            id="discount" class="form-control">
-                                                    </div> --}}
+                                                   <div class="form-group mt-2">
+                                                        <label for="stock_alert">Stock Alert</label>
+                                                        <input type="number" step="any" name="stock_alert" required
+                                                            value="{{ $item->stock_alert }}"
+                                                            id="stock_alert" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="code">Code</label>
+                                                        <input type="text" name="code" required
+                                                            value="{{ $item->code }}" id="code"
+                                                            class="form-control">
+                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-light"
@@ -139,13 +140,7 @@
                 <form action="{{ route('product.store') }}" method="post">
                     @csrf
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="code">Code</label>
-                            <div class="input-group mb-3">
-                                <input type="text" name="code" required id="code1" class="form-control">
-                                <button class="input-group-text btn-info" type="button" onclick="generateCode()" id="basic-addon2">Generate</button>
-                              </div>
-                        </div>
+                        
                         <div class="form-group mt-2">
                             <label for="name">Name</label>
                             <input type="text" name="name" required id="name" class="form-control">
@@ -158,14 +153,14 @@
                             @endforeach
                            </select>
                         </div>
-                        <div class="form-group mt-2">
+                       {{--  <div class="form-group mt-2">
                             <label for="isDefault">Default</label>
                            <select name="isDefault" id="isDefault" class="form-control">
                                 <option value="No" >No</option>
                                 <option value="Yes" >Yes</option>
 
                            </select>
-                        </div>
+                        </div> --}}
                         <div class="form-group mt-2">
                             <label for="pprice">Purchase Price</label>
                             <input type="number" step="any" name="pprice" required
@@ -176,10 +171,17 @@
                             <label for="price">Sale Price</label>
                             <input type="number" step="any" name="price" required value="" min="0" id="price" class="form-control">
                         </div>
-                       {{--  <div class="form-group mt-2">
-                            <label for="discount">Discount</label>
-                            <input type="number" step="any" name="discount" required value="0" min="0" id="discount" class="form-control">
-                        </div> --}}
+                       <div class="form-group mt-2">
+                            <label for="stock_alert">Stock Alert</label>
+                            <input type="number" step="any" name="stock_alert" required value="0" id="stock_alert" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="code">Code</label>
+                            <div class="input-group mb-3">
+                                <input type="text" name="code" required id="code1" class="form-control">
+                                <button class="input-group-text btn-info" type="button" onclick="generateCode()" id="basic-addon2">Generate</button>
+                              </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>

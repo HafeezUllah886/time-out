@@ -25,6 +25,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/reports/top-selling-products', [TopSellingProductsReportController::class, 'index'])->name('topSellingProductsReport');
 
     Route::get('/reports/activity', [ActivityReportConstroller::class, 'index'])->name('activityReport');
-    Route::get('/reports/activity/{from}/{to}', [ActivityReportConstroller::class, 'data'])->name('activityReportData');
+    Route::get('/reports/activity/{from}/{to}', [ActivityReportConstroller::class, 'details'])->name('activityReportData');
 
 });

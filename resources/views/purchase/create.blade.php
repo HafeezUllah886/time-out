@@ -187,10 +187,10 @@
                                 <label for="price">Sale Price</label>
                                 <input type="number" step="any" required name="price" value="0" min="0" id="price" class="form-control">
                             </div>
-                           {{--  <div class="form-group mt-2">
-                                <label for="discount">Discount</label>
-                                <input type="number" step="any" name="discount" required value="0" min="0" id="discount" class="form-control">
-                            </div> --}}
+                           <div class="form-group mt-2">
+                                <label for="stock_alert">Stock Alert</label>
+                                <input type="number" step="any" name="stock_alert" required value="0" min="0" id="stock_alert" class="form-control">
+                            </div> 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
