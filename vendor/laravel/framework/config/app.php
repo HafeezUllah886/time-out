@@ -72,7 +72,7 @@ return [
     |
     */
 
-    'timezone' => env('APP_TIMEZONE', 'Asia/Karachi'),
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
@@ -90,14 +90,14 @@ return [
     'domains' => [
         'time-out.test',
         'yaseen-s.test',
-        'quettamart.diamondquetta.com',
+        'timeout.diamondqta.com',
         'testyaseen.diamondquetta.com',
         'yaseen.run',
     ],
 
     'databases' => [
+        'u788011464_timeout',
         'timeout',
-        'test',
         'u788011464_quettamart'
     ],
 

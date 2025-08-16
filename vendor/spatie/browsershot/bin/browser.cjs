@@ -73,7 +73,7 @@ const callChrome = async pup => {
         if (request.options.remoteInstanceUrl || request.options.browserWSEndpoint ) {
             // default options
             let options = {
-                ignoreHTTPSErrors: request.options.ignoreHttpsErrors
+                acceptInsecureCerts: request.options.acceptInsecureCerts
             };
 
             // choose only one method to connect to the browser instance
@@ -93,7 +93,7 @@ const callChrome = async pup => {
         if (!browser) {
             browser = await puppet.launch({
                 headless: request.options.newHeadless ? 'new' : true,
-                ignoreHTTPSErrors: request.options.ignoreHttpsErrors,
+                acceptInsecureCerts: request.options.acceptInsecureCerts,
                 executablePath: request.options.executablePath,
                 args: request.options.args || [],
                 pipe: request.options.pipe || false,
@@ -161,7 +161,7 @@ const callChrome = async pup => {
         page.on('request', interceptedRequest => {
             var headers = interceptedRequest.headers();
 
-            if (request.options && !request.options.disableCaptureURLS) {
+            if (!request.options || !request.options.disableCaptureURLS) {
                 requestsList.push({
                     url: interceptedRequest.url(),
                 });
@@ -188,6 +188,13 @@ const callChrome = async pup => {
                         interceptedRequest.abort();
                         return;
                     }
+                }
+            }
+
+            if (request.options && request.options.disableRedirects) {
+                if (interceptedRequest.isNavigationRequest() && interceptedRequest.redirectChain().length) {
+                    interceptedRequest.abort();
+                    return
                 }
             }
 
@@ -241,13 +248,17 @@ const callChrome = async pup => {
         }
 
         if (request.options && request.options.device) {
-            const devices = puppet.devices;
+            const devices = puppet.KnownDevices;
             const device = devices[request.options.device];
             await page.emulate(device);
         }
 
         if (request.options && request.options.emulateMedia) {
             await page.emulateMediaType(request.options.emulateMedia);
+        }
+
+        if (request.options && request.options.emulateMediaFeatures) {
+            await page.emulateMediaFeatures(JSON.parse(request.options.emulateMediaFeatures));
         }
 
         if (request.options && request.options.viewport) {
@@ -394,14 +405,14 @@ const callChrome = async pup => {
             await page.close();
         }
 
-        await remoteInstance ? browser.disconnect() : browser.close();
+        await (remoteInstance ? browser.disconnect() : browser.close());
     } catch (exception) {
         if (browser) {
             if (remoteInstance && page) {
                 await page.close();
             }
 
-            (await remoteInstance) ? browser.disconnect() : browser.close();
+            await (remoteInstance ? browser.disconnect() : browser.close());
         }
 
         const output = await getOutput(request);
