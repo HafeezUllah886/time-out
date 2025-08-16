@@ -5,12 +5,12 @@
     <title>POS Barcode</title>
     <style>
         @page {
-            size: 45mm 35mm;
+            size: 38mm 25mm;
             margin: 0;
         }
         body {
-            width: 45mm;
-            height: 35mm;
+            width: 38mm;
+            height: 25mm;
             margin: 0;
             padding: 0;
             font-size: 15px;
@@ -18,8 +18,8 @@
             background: #fff;
         }
         .main {
-            width: 45mm;
-            height: 35mm;
+            width: 38mm;
+            height: 25mm;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -54,8 +54,8 @@
         }
         @media print {
             html, body {
-                width: 45mm;
-                height: 35mm;
+                width: 38mm;
+                height: 25mm;
             }
             body * {
                 visibility: visible;
