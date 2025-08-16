@@ -101,6 +101,8 @@ class POSController extends Controller
                   'notes'           => $request->notes,
                   'discount'        => $request->billDiscount,
                   'refID'           => $ref,
+                  'userID'          => auth()->user()->id,
+                  'accountID'       => $request->account,
                 ]
             );
 
@@ -128,6 +130,8 @@ class POSController extends Controller
                         'batch'         => $stock->batch ?? null,
                         'expiry'        => $stock->expiry ?? null,
                         'refID'         => $ref,
+                        'userID'        => auth()->user()->id,
+                        'accountID'     => $request->account,
                     ]
                 );
                 createStock($id,0, $qty, $request->date, "Sold in Inv # $sale->id", $ref, /* $request->warehouse[$key],  */$stock->batch ?? null, $stock->expiry ?? null);

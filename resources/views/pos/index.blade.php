@@ -526,7 +526,8 @@
                 method: "GET",
                 data: combinedData,
                 success: function(response) {
-                   window.open("{{ url('/pos/print/') }}/"+response, "_self") 
+                    console.log(response);
+                   window.open("{{ url('/pos/print/') }}/"+response, "_self")
                 }
             });
         });

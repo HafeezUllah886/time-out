@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('sale_details', function (Blueprint $table) {
             $table->foreignId('userID')->constrained('users', 'id');
+            $table->foreignId('accountID')->constrained('accounts', 'id');
         });
     }
 
@@ -24,6 +25,8 @@ return new class extends Migration
         Schema::table('sale_details', function (Blueprint $table) {
             $table->dropForeign(['userID']);
             $table->dropIndex(['userID']);
+            $table->dropForeign(['accountID']);
+            $table->dropIndex(['accountID']);   
         });
     }
 };
