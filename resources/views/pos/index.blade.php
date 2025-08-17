@@ -527,7 +527,7 @@
                 data: combinedData,
                 success: function(response) {
                     console.log(response);
-                   window.open("{{ url('/pos/print/') }}/"+response, "_self")
+                 /*   window.open("{{ url('/pos/print/') }}/"+response, "_self") */
                 }
             });
         });
