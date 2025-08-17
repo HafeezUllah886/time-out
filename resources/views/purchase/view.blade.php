@@ -99,7 +99,8 @@
                                             $amount = $purchase->details->sum('amount');
                                             $discount = $purchase->discount;
                                             $dc = $purchase->dc;
-                                            $net = ($amount + $dc) - $discount;
+                                            $tax = $purchase->tax;
+                                            $net = ($amount + $dc + $tax) - $discount;
                                         @endphp
                                         <table class="table">
                                             <tr>
@@ -113,6 +114,10 @@
                                             <tr>
                                                 <th class="text-end p-1 m-1">Delivery Charges</th>
                                                 <th class="text-end p-1 m-1">{{number_format($dc, 2)}}</th>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-end p-1 m-1">Tax</th>
+                                                <th class="text-end p-1 m-1">{{number_format($tax, 2)}}</th>
                                             </tr>
                                             <tr>
                                                 <th class="text-end p-1 m-1">Net Bill </th>

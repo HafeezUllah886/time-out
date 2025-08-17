@@ -77,16 +77,22 @@
                                     <input type="text" name="inv" id="inv" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-3">
+                            <div class="col-2">
                                 <div class="form-group">
                                     <label for="discount">Discount</label>
                                     <input type="number" name="discount" oninput="updateTotal()" id="discount" step="any" value="0" class="form-control no_zero">
                                 </div>
                             </div>
-                            <div class="col-3">
+                            <div class="col-2">
                                 <div class="form-group">
                                     <label for="dc">Delivery Charges</label>
                                     <input type="number" name="dc" id="dc" oninput="updateTotal()" min="0" step="any" value="0" class="form-control no_zero">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label for="tax">Tax</label>
+                                    <input type="number" name="tax" id="tax" oninput="updateTotal()" min="0" step="any" value="0" class="form-control no_zero">
                                 </div>
                             </div>
                             <div class="col-3">
@@ -297,8 +303,9 @@
 
             var discount = parseFloat($("#discount").val());
             var dc = parseFloat($("#dc").val());
+            var tax = parseFloat($("#tax").val());
 
-            var net = (total + dc) - discount;
+            var net = (total + dc + tax) - discount;
 
 
 

@@ -69,6 +69,7 @@ class PurchaseController extends Controller
                   'notes'           => $request->notes,
                   'discount'        => $request->discount,
                   'dc'              => $request->dc,
+                  'tax'             => $request->tax,
                   'vendorName'      => $request->vendorName,
                   'inv'             => $request->inv,
                   'refID'           => $ref,
@@ -115,7 +116,7 @@ class PurchaseController extends Controller
                 }
             }
 
-            $net = ($total + $request->dc) - $request->discount;
+            $net = ($total + $request->dc + $request->tax) - $request->discount;
 
             $purchase->update(
                 [
@@ -239,6 +240,7 @@ class PurchaseController extends Controller
                   'notes'           => $request->notes,
                   'discount'        => $request->discount,
                   'dc'              => $request->dc,
+                  'tax'             => $request->tax,
                   'vendorName'      => $request->vendorName,
                   'inv'             => $request->inv,
                   ]
@@ -285,7 +287,7 @@ class PurchaseController extends Controller
                 }
             }
 
-            $net = ($total + $request->dc) - $request->discount;
+            $net = ($total + $request->dc + $request->tax) - $request->discount;
 
             $purchase->update(
                 [

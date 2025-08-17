@@ -269,12 +269,13 @@ class SalesController extends Controller
             $ref = $sale->refID;
             $sale->update(
                 [
-                    'customerID'  => $request->customerID,
+                  'customerID'  => $request->customerID,
                   'date'        => $request->date,
                   'notes'       => $request->notes,
                   'discount'    => $request->discount,
                   'customerName'=> $request->customerName,
                   'dc'          => $request->dc,
+                  'accountID'   => $request->accountID,
                   ]
             );
 
@@ -301,6 +302,8 @@ class SalesController extends Controller
                         'batch'         => $stock->batch,
                         'expiry'        => $stock->expiry,
                         'refID'         => $ref,
+                        'userID'        => $sale->userID,
+                        'accountID'     => $request->accountID,
                     ]
                 );
                 createStock($id,0, $qty, $request->date, "Sold in Inv # $sale->id", $ref, /* $request->warehouse[$key],  */$stock->batch, $stock->expiry);
