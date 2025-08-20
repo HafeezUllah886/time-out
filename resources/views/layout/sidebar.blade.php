@@ -188,6 +188,11 @@
                                     Vendor Accounts </a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{ route('counter_transaction.index') }}" class="nav-link"
+                                    data-key="t-pickers">
+                                    Counter Transaction </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ route('receivings.index') }}" class="nav-link"
                                     data-key="t-input-masks">Payment Receiving</a>
                             </li>
@@ -236,6 +241,11 @@
                             <li class="nav-item">
                                 <a href="{{ route('activityReport') }}" class="nav-link"
                                     data-key="t-basic-elements">Activity Report</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="{{route('cashierActivityReport')}}">
+                                    <i class="ri-apps-2-line"></i> <span data-key="t-apps">Cashier Activity Report</span>
+                                </a>
                             </li>
                         </ul>
                     </div>

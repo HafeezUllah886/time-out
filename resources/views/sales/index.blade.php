@@ -66,18 +66,15 @@
                                                         Edit
                                                     </a>
                                                 </li>
-                                               {{--  <li>
-                                                    <a class="dropdown-item" onclick="newWindow('{{route('salePayment.index', $sale->id)}}')">
-                                                        <i class="ri-money-dollar-circle-fill align-bottom me-2 text-muted"></i>
-                                                        Payments
-                                                    </a>
-                                                </li> --}}
+                                                @if (auth()->user()->role == 1 || auth()->user()->role == 2)
                                                 <li>
                                                     <a class="dropdown-item text-danger" href="{{route('sale.delete', $sale->id)}}">
                                                         <i class="ri-delete-bin-2-fill align-bottom me-2 text-danger"></i>
                                                         Delete
                                                     </a>
                                                 </li>
+                                                @endif
+                                               
                                             </ul>
                                         </div>
                                     </td>

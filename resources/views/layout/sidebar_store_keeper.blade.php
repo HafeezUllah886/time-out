@@ -196,6 +196,15 @@
                                 <a href="{{ route('topSellingProductsReport') }}" class="nav-link"
                                     data-key="t-basic-elements">Top Selling Products</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('activityReport') }}" class="nav-link"
+                                    data-key="t-basic-elements">Activity Report</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="{{route('cashierActivityReport')}}">
+                                    <i class="ri-apps-2-line"></i> <span data-key="t-apps">Cashier Activity Report</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

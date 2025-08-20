@@ -9,11 +9,11 @@
                 <div class="card-body">
                     <div class="form-group mt-2">
                         <label for="from">From</label>
-                        <input type="datetime-local" name="from" id="from" value="{{ date('Y-m-d 08:00:00') }}" class="form-control">
+                        <input type="date" name="from" id="from" value="{{ date('Y-m-d') }}" class="form-control">
                     </div>
                     <div class="form-group mt-2">
                         <label for="to">To</label>
-                        <input type="datetime-local" name="to" id="to" value="{{ date('Y-m-d 20:00:00') }}" class="form-control">
+                        <input type="date" name="to" id="to" value="{{ date('Y-m-d') }}" class="form-control">
                     </div>
                     <div class="form-group mt-2">
                         <label for="user">User</label>
@@ -38,9 +38,13 @@
     <script>
 
         $("#viewBtn").on("click", function (){
+           
             var from = $("#from").val();
             var to = $("#to").val();
             var user = $("#user").val();
+            console.log(from);
+            console.log(to);
+            console.log(user);
             var url = "{{ route('cashierActivityReportData', ['from' => ':from', 'to' => ':to', 'user' => ':user']) }}"
         .replace(':from', from)
         .replace(':to', to)

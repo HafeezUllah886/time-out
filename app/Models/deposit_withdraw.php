@@ -14,4 +14,6 @@ class deposit_withdraw extends Model
     {
         return $this->belongsTo(accounts::class, 'accountID');
     }
+
+  
 }

@@ -29,6 +29,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/reports/activity/{from}/{to}', [ActivityReportConstroller::class, 'details'])->name('activityReportData');
 
     Route::get('/reports/cashier-activity', [CashierActivityReport::class, 'index'])->name('cashierActivityReport');
-    Route::get('/reports/cashier-activity/{from}/{to}', [CashierActivityReport::class, 'details'])->name('cashierActivityReportData');
+    Route::get('/reports/cashier-activity/{from}/{to}/{user}', [CashierActivityReport::class, 'details'])->name('cashierActivityReportData');
 
 });
