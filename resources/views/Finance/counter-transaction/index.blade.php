@@ -70,7 +70,7 @@
                             </select>
                         </div>
                         <div class="form-group mt-2">
-                            <label for="from">From</label>
+                            <label for="from">Account</label>
                             <select name="accountID" id="from" required class="selectize">
                                 <option value=""></option>
                                 @foreach ($accounts as $account)

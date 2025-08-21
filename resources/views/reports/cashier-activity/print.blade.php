@@ -84,12 +84,12 @@
             <table>
                 <tr>
                     <td>From: </td>
-                    <td> {{date('d-m-Y', strtotime($from)) }}</td>
+                    <td> {{date('d-m-Y h:i A', strtotime($from)) }}</td>
                     
                 </tr>
                 <tr>
                     <td>To: </td>
-                    <td> {{date('d-m-Y', strtotime($to)) }}</td>
+                    <td> {{date('d-m-Y h:i A', strtotime($to)) }}</td>
 
                 </tr>
                 <tr>

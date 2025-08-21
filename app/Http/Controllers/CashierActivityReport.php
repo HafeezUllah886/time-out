@@ -25,18 +25,18 @@ class CashierActivityReport extends Controller
 
     public function details($from, $to, $user)
     {
-        $sales = sale_details::whereBetween('date', [$from,$to])->where('userID', $user)->sum('amount');
-        $discounts = sales::whereBetween('date', [$from,$to])->where('userID', $user)->sum('discount');
-        $dc = sales::whereBetween('date', [$from,$to])->where('userID', $user)->sum('dc');
+        $sales = sale_details::whereBetween('created_at', [$from,$to])->where('userID', $user)->sum('amount');
+        $discounts = sales::whereBetween('created_at', [$from,$to])->where('userID', $user)->sum('discount');
+        $dc = sales::whereBetween('created_at', [$from,$to])->where('userID', $user)->sum('dc');
 
         $current = getAccountBalance(1);
 
-        $pre_cr = transactions::where('accountID', 1)->whereDate('date', '<', $from)->sum('cr');
-        $pre_db = transactions::where('accountID', 1)->whereDate('date', '<', $from)->sum('db');
+        $pre_cr = transactions::where('accountID', 1)->whereDate('created_at', '<', $from)->sum('cr');
+        $pre_db = transactions::where('accountID', 1)->whereDate('created_at', '<', $from)->sum('db');
         $pre_balance = $pre_cr - $pre_db;
 
-        $cash_given= counter_transaction::whereBetween('date', [$from,$to])->where('userID', $user)->where('type', 'Give')->sum('amount');
-        $cash_taken = counter_transaction::whereBetween('date', [$from,$to])->where('userID', $user)->where('type', 'Take')->sum('amount');
+        $cash_given= counter_transaction::whereBetween('created_at', [$from,$to])->where('userID', $user)->where('type', 'Give')->sum('amount');
+        $cash_taken = counter_transaction::whereBetween('created_at', [$from,$to])->where('userID', $user)->where('type', 'Take')->sum('amount');
 
         $user = User::find($user)->name;
 

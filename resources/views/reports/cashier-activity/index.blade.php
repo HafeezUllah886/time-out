@@ -9,11 +9,11 @@
                 <div class="card-body">
                     <div class="form-group mt-2">
                         <label for="from">From</label>
-                        <input type="date" name="from" id="from" value="{{ date('Y-m-d') }}" class="form-control">
+                        <input type="datetime-local" name="from" id="from" value="{{ date('Y-m-d H:i:s') }}" class="form-control">
                     </div>
                     <div class="form-group mt-2">
                         <label for="to">To</label>
-                        <input type="date" name="to" id="to" value="{{ date('Y-m-d') }}" class="form-control">
+                        <input type="datetime-local" name="to" id="to" value="{{ date('Y-m-d H:i:s') }}" class="form-control">
                     </div>
                     <div class="form-group mt-2">
                         <label for="user">User</label>
