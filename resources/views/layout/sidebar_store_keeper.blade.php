@@ -163,6 +163,11 @@
                                     data-key="t-advanced">Transfer</a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{ route('counter_transaction.index') }}" class="nav-link"
+                                    data-key="t-pickers">
+                                    Counter Transaction </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ route('expenses.index') }}" class="nav-link" data-key="t-range-slider">
                                     Expenses</a>
                             </li>
