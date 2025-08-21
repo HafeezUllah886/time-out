@@ -17,7 +17,7 @@ class CounterTransactionController extends Controller
     {
         $trans = counter_transaction::orderBy('refID', 'desc')->get();
         $users = User::where('role', 3)->get();
-        $accounts = accounts::where('category', 'Cash')->where('type', 'Business')->get();
+        $accounts = accounts::where('category', 'Cash')->where('type', 'Business')->where('id', '!=', 1)->get();
         return view('Finance.counter-transaction.index', compact('trans', 'users', 'accounts'));
     }
 
