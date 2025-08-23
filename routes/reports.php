@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/reports/ledger/{from}/{to}/{type}', [ledgerReportController::class, 'data'])->name('reportLedgerData');
 
     Route::get('/reports/dailysales', [DailyProductSalesReportController::class, 'index'])->name('dailySalesReport');
-    Route::get('/reports/dailysales/{date}', [DailyProductSalesReportController::class, 'data'])->name('dailySalesReportData');
+    Route::get('/reports/dailysales/{from}/{to}/{user}', [DailyProductSalesReportController::class, 'data'])->name('dailySalesReportData');
 
     Route::get('/reports/top-selling-products', [TopSellingProductsReportController::class, 'index'])->name('topSellingProductsReport');
 
