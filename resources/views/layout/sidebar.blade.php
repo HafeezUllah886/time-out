@@ -244,7 +244,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{route('cashierActivityReport')}}">
-                                    <i class="ri-apps-2-line"></i> <span data-key="t-apps">Cashier Activity Report</span>
+                                   <span data-key="t-apps">Cashier Activity Report</span>
                                 </a>
                             </li>
                         </ul>
