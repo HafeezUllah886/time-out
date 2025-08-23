@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\accounts;
 use App\Models\counter_transaction;
+use App\Models\transactions;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -49,8 +50,10 @@ class CounterTransactionController extends Controller
 
         if($request->type == 'Take'){
             createTransaction(1, $request->date, 0, $request->amount, "Payment added to counter", $ref);
+            createTransaction($request->accountID, $request->date, $request->amount, 0, "Payment taken from counter", $ref);
         }else{
             createTransaction(1, $request->date, $request->amount, 0, "Payment taken from counter", $ref);
+            createTransaction($request->accountID, $request->date, 0, $request->amount, "Payment added to counter", $ref);
         }
             
         DB::commit();
@@ -89,8 +92,17 @@ class CounterTransactionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(counter_transaction $counter_transaction)
+    public function delete($refID)
     {
-        //
+        try {
+            DB::beginTransaction();
+            transactions::where('refID', $refID)->delete();
+            counter_transaction::where('refID', $refID)->delete();
+            DB::commit();
+        } catch (\Exception $th) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $th->getMessage());
+        }
+        return redirect()->back()->with('success', 'Counter Transaction Deleted Successfully');
     }
 }

@@ -104,31 +104,31 @@
                 </tr>
                 <tr>
                     <td>Opening Balance: </td>
-                    <td> {{ $pre_balance }}</td>
+                    <td> {{ number_format($pre_balance) }}</td>
                 </tr>
                 <tr>
                     <td>Cash Given: </td>
-                    <td> {{ $cash_given }}</td>
+                    <td> {{ number_format($cash_given) }}</td>
                 </tr>
                 <tr>
                     <td>Sales: </td>
-                    <td> {{ $sales }}</td>
+                    <td> {{ number_format($sales) }}</td>
                 </tr>
                 <tr>
                     <td>Discount: </td>
-                    <td> {{ $discounts }}</td>
+                    <td> {{ number_format($discounts) }}</td>
                 </tr>
                 <tr>
                     <td>Delivery Charges: </td>
-                    <td> {{ $dc }}</td>
+                    <td> {{ number_format($dc) }}</td>
                 </tr>
                 <tr>
                     <td>Cash Taken: </td>
-                    <td> {{ $cash_taken }}</td>
+                    <td> {{ number_format($cash_taken) }}</td>
                 </tr>
                 <tr>
                     <td>Current Balance: </td>
-                    <td> {{ $current }}</td>
+                    <td> {{ number_format($current) }}</td>
                 </tr>              
             </table>
         </div>

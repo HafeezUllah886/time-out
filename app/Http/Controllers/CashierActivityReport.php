@@ -31,8 +31,8 @@ class CashierActivityReport extends Controller
 
         $current = getAccountBalance(1);
 
-        $pre_cr = transactions::where('accountID', 1)->whereDate('created_at', '<', $from)->sum('cr');
-        $pre_db = transactions::where('accountID', 1)->whereDate('created_at', '<', $from)->sum('db');
+        $pre_cr = transactions::where('accountID', 1)->where('created_at', '<', $from)->sum('cr');
+        $pre_db = transactions::where('accountID', 1)->where('created_at', '<', $from)->sum('db');
         $pre_balance = $pre_cr - $pre_db;
 
         $cash_given= counter_transaction::whereBetween('created_at', [$from,$to])->where('userID', $user)->where('type', 'Give')->sum('amount');
