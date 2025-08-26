@@ -46,13 +46,13 @@
                                                 <i class="ri-more-fill align-middle"></i>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li>
+                                                {{-- <li>
                                                     <button class="dropdown-item" onclick="newWindow('{{route('sale.show', $sale->id)}}')"
                                                         onclick=""><i
                                                             class="ri-eye-fill align-bottom me-2 text-muted"></i>
                                                         View
                                                     </button>
-                                                </li>
+                                                </li> --}}
                                                 <li>
                                                     <button class="dropdown-item" onclick="newWindow('{{route('pos.print', $sale->id)}}')"
                                                         onclick=""><i
