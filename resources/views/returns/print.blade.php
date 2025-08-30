@@ -79,64 +79,73 @@
            {{--  <p class="text-center"><strong>081-2502481</strong></p>
             <p class="text-center"><strong>Fatima Jinnah Road Near Bugti Gali Zarghoon Plaza Quetta</strong></strong></p> --}}
             <div class="area-title">
-                <p class="text-center bg-dark">Cashier Activity</p>
+                <p class="text-center bg-dark">Return Receipt</p>
             </div>
             <table>
                 <tr>
-                    <td>From: </td>
-                    <td> {{date('d-m-Y h:i A', strtotime($from)) }}</td>
-                    
+                    <td width="15%">Return # </td>
+                    <td width="35%"> {{ $return->id }}</td>
+                    <td width="15%">Date: </td>
+                    <td width="35%"> {{ date("d-m-Y", strtotime($return->date)) }} {{ \Carbon\Carbon::parse($return->created_on)->format('h:i A') }}</td>
+                    {{-- <td width="15%"> Ref # </td>
+                    <td width="55%"> {{ $sale->referenceNo }}</td> --}}
                 </tr>
                 <tr>
-                    <td>To: </td>
-                    <td> {{date('d-m-Y h:i A', strtotime($to)) }}</td>
+                    <td width="15%"> Customer: </td>
+                    <td width="55%" colspan="3">
 
+                        {{ $return->customer->title }}
+                    </td>
                 </tr>
-                <tr>
-                    <td>Printer On: </td>
-                    <td> {{ date("d-m-Y h:i A", strtotime(now())) }}</td>
-
-                </tr>
-                <tr>
-                    <td>Cashier: </td>
-                    <td> {{ $user }}</td>
-
-                </tr>
-                <tr>
-                    <td>Opening Balance: </td>
-                    <td> {{ number_format($pre_balance) }}</td>
-                </tr>
-                <tr>
-                    <td>Cash Given: </td>
-                    <td> {{ number_format($cash_given) }}</td>
-                </tr>
-                <tr>
-                    <td>Sales: </td>
-                    <td> {{ number_format($sales) }}</td>
-                </tr>
-                <tr>
-                    <td>Discount: </td>
-                    <td> {{ number_format($discounts) }}</td>
-                </tr>
-                <tr>
-                    <td>Delivery Charges: </td>
-                    <td> {{ number_format($dc) }}</td>
-                </tr>
-                <tr>
-                    <td>Return: </td>
-                    <td> {{ number_format($returns) }}</td>
-                </tr>
-                <tr>
-                    <td>Cash Taken: </td>
-                    <td> {{ number_format($cash_taken) }}</td>
-                </tr>
-                <tr>
-                    <td>Current Balance: </td>
-                    <td> {{ number_format($current) }}</td>
-                </tr>              
             </table>
         </div>
-       
+        <div class="content">
+            <table>
+                <thead class="bg-dark">
+                    <th class="text-left">Description</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Amount</th>
+                </thead>
+                <tbody>
+                    @php
+                        $total = 0;
+                        $items = 0;
+                        $qty = 0;
+                    @endphp
+                   @foreach ($return->details as $item)
+                   @php
+                       $total += ($item->price - $item->discount) * $item->qty;
+                       $items += 1;
+                       $qty += $item->qty;
+                   @endphp
+                            <tr>
+                                <td colspan="4" class="uppercase">{{ $item->product->name }} | {{ $item->product->brand }}</td>
+                            </tr>
+                            <tr class="bottom-border">
+                                <td></td>
+                                <td class="text-center">{{ $item->qty }}</td>
+                                <td>{{ number_format($item->price, 2) }}</td>
+                                <td class="text-right">{{ number_format($item->amount ,2)}}</td>
+                            </tr>
+                   @endforeach
+                   <tr>
+                    <td colspan="3">
+                        Item(s) = {{ $items }} |
+                        Total Quantity = {{ $qty }}
+                    </td>
+                    <td colspan="3" class="text-right" style="font-size: 18px"><strong>{{ number_format($total,0) }}</strong></td>
+                   </tr>
+                
+                 
+                </tbody>
+            </table>
+        </div>
+        <div class="notes">
+            {{-- <h5>خریدا ہوا مال واپس نہیں ہو گا۔</h5>
+            <h5>چینج ہو گا 5 دن میں۔</h5> --}}
+            <span>{{ $return->notes }}</span>
+        </div>
         <div class="footer">
             <hr>
             <h5 class="text-center">Developed by Diamond Software <br> diamondsoftwareqta.com</h5>
@@ -151,7 +160,7 @@ setTimeout(function() {
     window.print();
     }, 2000);
         setTimeout(function() {
-            window.location.href = "{{ url('/reports/cashier-activity')}}";
+            window.location.href = "{{ url('pos')}}";
     }, 5000);
 
 </script>

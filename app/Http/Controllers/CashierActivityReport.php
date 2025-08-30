@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\counter_transaction;
+use App\Models\returns;
 use App\Models\sale_details;
 use App\Models\sales;
 use App\Models\transactions;
@@ -29,6 +30,8 @@ class CashierActivityReport extends Controller
         $discounts = sales::whereBetween('created_at', [$from,$to])->where('userID', $user)->sum('discount');
         $dc = sales::whereBetween('created_at', [$from,$to])->where('userID', $user)->sum('dc');
 
+        $returns = returns::whereBetween('created_at', [$from,$to])->where('userID', $user)->sum('total');
+
         $current = getAccountBalance(1);
 
         $pre_cr = transactions::where('accountID', 1)->where('created_at', '<', $from)->sum('cr');
@@ -40,6 +43,6 @@ class CashierActivityReport extends Controller
 
         $user = User::find($user)->name;
 
-        return view('reports.cashier-activity.print', compact('sales', 'discounts', 'dc', 'current', 'pre_balance', 'from', 'to', 'user', 'cash_given', 'cash_taken'));
+        return view('reports.cashier-activity.print', compact('sales', 'discounts', 'dc', 'current', 'pre_balance', 'from', 'to', 'user', 'cash_given', 'cash_taken', 'returns'));
     }
 }

@@ -79,6 +79,23 @@
                     </div>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link menu-link" href="#returns" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarApps">
+                        <i class="ri-shopping-cart-fill"></i><span data-key="t-apps">Return</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="returns">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a onclick="newWindow('{{ route('return.create') }}')" class="nav-link"
+                                    data-key="t-chat">Create Return</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('return.index') }}" class="nav-link" data-key="t-chat"> Return History</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link menu-link" href="#stock" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarApps">
                         <i class="ri-stack-line"></i><span data-key="t-apps">Stocks</span>

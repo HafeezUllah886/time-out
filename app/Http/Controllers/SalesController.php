@@ -306,7 +306,7 @@ class SalesController extends Controller
                         'accountID'     => $request->accountID,
                     ]
                 );
-                createStock($id,0, $qty, $request->date, "Sold in Inv # $sale->id", $ref, /* $request->warehouse[$key],  */$stock->batch, $stock->expiry);
+                createStock($id,0, $qty, $request->date, "Sold in Inv # $sale->id", $ref, /* $request->warehouse[$key],  */$stock->batch ?? null, $stock->expiry ?? null);
                 }
             }
 

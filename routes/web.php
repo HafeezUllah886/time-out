@@ -16,6 +16,7 @@ require __DIR__ . '/finance.php';
 require __DIR__ . '/purchase.php';
 require __DIR__ . '/stock.php';
 require __DIR__ . '/sale.php';
+require __DIR__ . '/return.php';
 require __DIR__ . '/pos.php';
 require __DIR__ . '/reports.php';
 require __DIR__ . '/quot.php';
