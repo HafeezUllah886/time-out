@@ -151,7 +151,7 @@ setTimeout(function() {
     window.print();
     }, 2000);
         setTimeout(function() {
-            window.location.href = "{{ url('/reports/cashier-activity')}}";
+            window.location.href = "{{ url('/return')}}";
     }, 5000);
 
 </script>
