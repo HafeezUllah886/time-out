@@ -50,6 +50,8 @@
                                                 <th scope="col" style="width: 50px;">#</th>
                                                 <th scope="col">Product</th>
                                                 <th scope="col" class="text-end">Sold Qty</th>
+                                                <th scope="col" class="text-end">Return Qty</th>
+                                                <th scope="col" class="text-end">Net Sold Qty</th>
                                                 <th scope="col" class="text-end">Amount</th>
                                                 <th scope="col" class="text-end">Avg P-Price</th>
                                                 <th scope="col" class="text-end">Avg S-Price</th>
@@ -65,10 +67,10 @@
                                         @foreach ($products as $key => $p)
                                         @if($p->qty > 0)
                                         @php
-                                            $total += $p->total;
+                                            $total += $p->total - $p->returnTotal;
                                             $avg_s_price = $p->total / $p->qty;
                                             $avg_profit = $avg_s_price - $p->avg_purchase;
-                                            $profit = $avg_profit * $p->qty;
+                                            $profit = $avg_profit * ($p->qty - $p->returnQty);
                                             $total_profit += $profit;
                                         @endphp
                                      
@@ -76,6 +78,8 @@
                                             <td class="p-1">{{ $key+1 }}</td>
                                             <td class="text-start p-1">{{ $p->name }}</td>
                                             <td class="text-end p-1">{{ $p->qty }}</td>
+                                            <td class="text-end p-1">{{ number_format($p->returnQty) }}</td>
+                                            <td class="text-end p-1">{{ number_format($p->qty - $p->returnQty) }}</td>
                                             <td class="text-end p-1">{{ number_format($p->total) }}</td>
                                             <td class="text-end p-1">{{ number_format($p->avg_purchase) }}</td>
                                             <td class="text-end p-1">{{ number_format($avg_s_price) }}</td>
@@ -87,7 +91,7 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th colspan="3" class="text-end">Total</th>
+                                                <th colspan="5" class="text-end">Total</th>
                                                 <th class="text-end">{{number_format($total, 2)}}</th>
                                                 <th></th>
                                                 <th></th>

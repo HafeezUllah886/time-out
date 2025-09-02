@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\products;
+use App\Models\return_details;
 use App\Models\User;
 
 class DailyProductSalesReportController extends Controller
@@ -28,10 +29,22 @@ class DailyProductSalesReportController extends Controller
             if($user == 'all'){
                 $p->qty = $p->saleDetails()->whereBetween('created_at', [$from,$to])->sum('qty');
                 $p->total = $p->saleDetails()->whereBetween('created_at', [$from,$to])->sum('amount');
+
+                $rqty = return_details::where('productID', $p->id)->whereBetween('created_at', [$from,$to])->sum('qty');
+
+                $p->returnQty = $rqty;
+                $ramount = return_details::where('productID', $p->id)->whereBetween('created_at', [$from,$to])->sum('amount');
+                $p->returnTotal = $ramount;
             }
             else{
                 $p->qty = $p->saleDetails()->whereBetween('created_at', [$from,$to])->where('userID', $user)->sum('qty');
                 $p->total = $p->saleDetails()->whereBetween('created_at', [$from,$to])->where('userID', $user)->sum('amount');
+
+                $rqty = return_details::where('productID', $p->id)->where('userID', $user)->whereBetween('created_at', [$from,$to])->sum('qty');
+
+                $p->returnQty = $rqty;
+                $ramount = return_details::where('productID', $p->id)->where('userID', $user)->whereBetween('created_at', [$from,$to])->sum('amount');
+                $p->returnTotal = $ramount;
             }
             $avg_purchase = avgPurchasePrice('all', 'all', $p->id);
             $p->avg_purchase = $avg_purchase;
