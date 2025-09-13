@@ -17,7 +17,7 @@ class ExpensesController extends Controller
     public function index()
     {
         $expenses = expenses::orderby('id', 'desc')->get();
-        $accounts = accounts::business()->get();
+        $accounts = accounts::business()->where('id', '!=', 1)->get();
         $categories = expenseCategories::all();
         return view('Finance.expense.index', compact('expenses', 'accounts', 'categories'));
     }

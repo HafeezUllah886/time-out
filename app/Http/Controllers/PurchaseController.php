@@ -43,7 +43,7 @@ class PurchaseController extends Controller
         $products = products::orderby('name', 'asc')->get();
         $warehouses = warehouses::all();
         $vendors = accounts::vendor()->get();
-        $accounts = accounts::business()->get();
+        $accounts = accounts::business()->where('id', '!=', 1)->get();
         $cats = categories::orderBy('name', 'asc')->get();
         return view('purchase.create', compact('products', 'warehouses', 'vendors', 'accounts', 'cats'));
     }
@@ -203,7 +203,7 @@ class PurchaseController extends Controller
         $products = products::orderby('name', 'asc')->get();
         $warehouses = warehouses::all();
         $vendors = accounts::vendor()->get();
-        $accounts = accounts::business()->get();
+        $accounts = accounts::business()->where('id', '!=', 1)->get();
         $cats = categories::orderBy('name', 'asc')->get();
 
         return view('purchase.edit', compact('products', 'warehouses', 'vendors', 'accounts', 'purchase', 'cats'));

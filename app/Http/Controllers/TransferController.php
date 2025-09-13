@@ -16,7 +16,7 @@ class TransferController extends Controller
     public function index()
     {
         $transfers = transfer::orderby('id', 'desc')->get();
-        $accounts = accounts::whereNotIn('id', [2,3])->get();
+        $accounts = accounts::whereNotIn('id', [1,2,3])->get();
         return view('Finance.transfer.index', compact('transfers', 'accounts'));
     }
 

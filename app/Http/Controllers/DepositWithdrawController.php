@@ -16,7 +16,7 @@ class DepositWithdrawController extends Controller
     public function index()
     {
         $trans = deposit_withdraw::orderBy('id', 'desc')->get();
-        $accounts = accounts::orderby('type', 'asc')->orderby('title', 'asc')->get();
+        $accounts = accounts::orderby('type', 'asc')->orderby('title', 'asc')->where('id', '!=', 1)->get();
 
         return view('Finance.deposit_withdraw.index', compact('trans', 'accounts'));
     }
