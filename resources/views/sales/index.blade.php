@@ -23,6 +23,9 @@
                             <th>#</th>
                             <th>Customer</th>
                             <th>Date</th>
+                            <th>Created By</th>
+                            <th>Created At</th>
+                            <th>Date</th>
                             <th>Amount</th>
                             <th>Action</th>
                         </thead>
@@ -37,6 +40,8 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $sale->customer->title }}</td>
                                     <td>{{ date('d M Y', strtotime($sale->date)) }}</td>
+                                    <td>{{ $sale->user->name }}</td>
+                                    <td>{{ date('d M Y h:i A', strtotime($sale->created_at)) }}</td>
                                     <td>{{ number_format($amount) }}</td>
 
                                     <td>
