@@ -60,6 +60,11 @@ class SalesController extends Controller
     public function store(Request $request)
     {
 
+        if(auth()->user()->role != "Cashier")
+        {
+            return to_route('dashboard')->with('error', "You are not authorized to create sales");
+        }
+
         try
         {
             if($request->isNotFilled('id'))

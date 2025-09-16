@@ -27,7 +27,7 @@
                                     <td>{{ $tran->refID }}</td>
                                     <td>{{ $tran->user->name }}</td>
                                     <td>{{ $tran->account->title }}</td>
-                                    <td>{{ date('d M Y', strtotime($tran->date)) }}</td>
+                                    <td>{{ date('d M Y h:i A', strtotime($tran->created_at)) }}</td>
                                     <td><span
                                             class="badge {{ $tran->type == 'Withdraw' ? 'bg-warning' : 'bg-info' }}">{{ $tran->type }}</span>
                                     </td>

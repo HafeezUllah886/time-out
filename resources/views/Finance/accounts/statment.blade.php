@@ -79,7 +79,7 @@
                                             <tr>
                                                 <td>{{ $key+1 }}</td>
                                                 <td>{{ $trans->refID }}</td>
-                                                <td>{{ date('d M Y', strtotime($trans->date)) }}</td>
+                                                <td>{{ date('d M Y h:i A', strtotime($trans->created_at)) }}</td>
                                                 <td class="text-start">{!! $trans->notes !!}</td>
                                                 <td class="text-end text-success">{{ number_format($trans->cr) }}</td>
                                                 <td class="text-end text-danger">{{ number_format($trans->db) }}</td>
